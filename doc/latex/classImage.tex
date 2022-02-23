@@ -1,0 +1,113 @@
+\hypertarget{classImage}{}\doxysection{Image Class Reference}
+\label{classImage}\index{Image@{Image}}
+
+
+{\ttfamily \#include $<$Image.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classImage_a58edd1c45b4faeb5f789b0d036d02313}{Image}} ()
+\begin{DoxyCompactList}\small\item\em les dimensions de l\textquotesingle{}image \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classImage_a3ee63d37f01ef80f9d8ed5bf8e6fe10d}{Image}} (unsigned int dimx, unsigned int dimy)
+\item 
+\mbox{\hyperlink{classImage_a0294f63700543e11c0f0da85601c7ae5}{$\sim$\+Image}} ()
+\item 
+\mbox{\hyperlink{classPixel}{Pixel}} \& \mbox{\hyperlink{classImage_aec471a60926edd18b20b04b18f65abe1}{get\+Pix}} (const unsigned int x, const unsigned int y) const
+\item 
+void \mbox{\hyperlink{classImage_afd8126f2c377027b7e00ec3fe6a3372e}{set\+Pix}} (const unsigned int x, const unsigned int y, const \mbox{\hyperlink{classPixel}{Pixel}} \&couleur)
+\item 
+void \mbox{\hyperlink{classImage_a9b2e51438870656db6f84bae5cfa74c8}{dessiner\+Rectangle}} (const unsigned int Xmin, const unsigned int Ymin, const unsigned int Xmax, const unsigned int Ymax, const \mbox{\hyperlink{classPixel}{Pixel}} \&couleur)
+\item 
+void \mbox{\hyperlink{classImage_a62d0c277a049c0ea1da7ba2dd2131c31}{effacer}} (const \mbox{\hyperlink{classPixel}{Pixel}} \&couleur)
+\item 
+void \mbox{\hyperlink{classImage_a54d5231df55020822eb9e08c0f10de75}{test\+Regression}} () const
+\item 
+void \mbox{\hyperlink{classImage_adf51ae329fedeacd95f6fab809f313d5}{sauver}} (const std\+::string \&filename) const
+\item 
+void \mbox{\hyperlink{classImage_a3696ea24faa90a9c2315e073f356960f}{ouvrir}} (const std\+::string \&filename)
+\item 
+void \mbox{\hyperlink{classImage_aa3cc6f7401625c11dcd5ef003f37e4fa}{afficher\+Console}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classImage_a58edd1c45b4faeb5f789b0d036d02313}\label{classImage_a58edd1c45b4faeb5f789b0d036d02313}} 
+\index{Image@{Image}!Image@{Image}}
+\index{Image@{Image}!Image@{Image}}
+\doxysubsubsection{\texorpdfstring{Image()}{Image()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Image\+::\+Image (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+les dimensions de l\textquotesingle{}image 
+
+Constructeur par défaut de la classe\+: initialise dimx et dimy à 0 ce constructeur n\textquotesingle{}alloue pas de pixel \mbox{\Hypertarget{classImage_a3ee63d37f01ef80f9d8ed5bf8e6fe10d}\label{classImage_a3ee63d37f01ef80f9d8ed5bf8e6fe10d}} 
+\index{Image@{Image}!Image@{Image}}
+\index{Image@{Image}!Image@{Image}}
+\doxysubsubsection{\texorpdfstring{Image()}{Image()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Image\+::\+Image (\begin{DoxyParamCaption}\item[{unsigned int}]{dimx,  }\item[{unsigned int}]{dimy }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classImage_a0294f63700543e11c0f0da85601c7ae5}\label{classImage_a0294f63700543e11c0f0da85601c7ae5}} 
+\index{Image@{Image}!````~Image@{$\sim$Image}}
+\index{````~Image@{$\sim$Image}!Image@{Image}}
+\doxysubsubsection{\texorpdfstring{$\sim$Image()}{~Image()}}
+{\footnotesize\ttfamily Image\+::$\sim$\+Image (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classImage_aa3cc6f7401625c11dcd5ef003f37e4fa}\label{classImage_aa3cc6f7401625c11dcd5ef003f37e4fa}} 
+\index{Image@{Image}!afficherConsole@{afficherConsole}}
+\index{afficherConsole@{afficherConsole}!Image@{Image}}
+\doxysubsubsection{\texorpdfstring{afficherConsole()}{afficherConsole()}}
+{\footnotesize\ttfamily void Image\+::afficher\+Console (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classImage_a9b2e51438870656db6f84bae5cfa74c8}\label{classImage_a9b2e51438870656db6f84bae5cfa74c8}} 
+\index{Image@{Image}!dessinerRectangle@{dessinerRectangle}}
+\index{dessinerRectangle@{dessinerRectangle}!Image@{Image}}
+\doxysubsubsection{\texorpdfstring{dessinerRectangle()}{dessinerRectangle()}}
+{\footnotesize\ttfamily void Image\+::dessiner\+Rectangle (\begin{DoxyParamCaption}\item[{const unsigned int}]{Xmin,  }\item[{const unsigned int}]{Ymin,  }\item[{const unsigned int}]{Xmax,  }\item[{const unsigned int}]{Ymax,  }\item[{const \mbox{\hyperlink{classPixel}{Pixel}} \&}]{couleur }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classImage_a62d0c277a049c0ea1da7ba2dd2131c31}\label{classImage_a62d0c277a049c0ea1da7ba2dd2131c31}} 
+\index{Image@{Image}!effacer@{effacer}}
+\index{effacer@{effacer}!Image@{Image}}
+\doxysubsubsection{\texorpdfstring{effacer()}{effacer()}}
+{\footnotesize\ttfamily void Image\+::effacer (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPixel}{Pixel}} \&}]{couleur }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classImage_aec471a60926edd18b20b04b18f65abe1}\label{classImage_aec471a60926edd18b20b04b18f65abe1}} 
+\index{Image@{Image}!getPix@{getPix}}
+\index{getPix@{getPix}!Image@{Image}}
+\doxysubsubsection{\texorpdfstring{getPix()}{getPix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPixel}{Pixel}} \& Image\+::get\+Pix (\begin{DoxyParamCaption}\item[{const unsigned int}]{x,  }\item[{const unsigned int}]{y }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classImage_a3696ea24faa90a9c2315e073f356960f}\label{classImage_a3696ea24faa90a9c2315e073f356960f}} 
+\index{Image@{Image}!ouvrir@{ouvrir}}
+\index{ouvrir@{ouvrir}!Image@{Image}}
+\doxysubsubsection{\texorpdfstring{ouvrir()}{ouvrir()}}
+{\footnotesize\ttfamily void Image\+::ouvrir (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classImage_adf51ae329fedeacd95f6fab809f313d5}\label{classImage_adf51ae329fedeacd95f6fab809f313d5}} 
+\index{Image@{Image}!sauver@{sauver}}
+\index{sauver@{sauver}!Image@{Image}}
+\doxysubsubsection{\texorpdfstring{sauver()}{sauver()}}
+{\footnotesize\ttfamily void Image\+::sauver (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classImage_afd8126f2c377027b7e00ec3fe6a3372e}\label{classImage_afd8126f2c377027b7e00ec3fe6a3372e}} 
+\index{Image@{Image}!setPix@{setPix}}
+\index{setPix@{setPix}!Image@{Image}}
+\doxysubsubsection{\texorpdfstring{setPix()}{setPix()}}
+{\footnotesize\ttfamily void Image\+::set\+Pix (\begin{DoxyParamCaption}\item[{const unsigned int}]{x,  }\item[{const unsigned int}]{y,  }\item[{const \mbox{\hyperlink{classPixel}{Pixel}} \&}]{couleur }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classImage_a54d5231df55020822eb9e08c0f10de75}\label{classImage_a54d5231df55020822eb9e08c0f10de75}} 
+\index{Image@{Image}!testRegression@{testRegression}}
+\index{testRegression@{testRegression}!Image@{Image}}
+\doxysubsubsection{\texorpdfstring{testRegression()}{testRegression()}}
+{\footnotesize\ttfamily void Image\+::test\+Regression (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Image_8h}{Image.\+h}}\item 
+src/\mbox{\hyperlink{Image_8cpp}{Image.\+cpp}}\end{DoxyCompactItemize}

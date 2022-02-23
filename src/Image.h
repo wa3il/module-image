@@ -8,13 +8,13 @@
 class Image{
 
     private :
-        Pixel* tab;     // le tableau 1D de pixel
-        unsigned int dimx, dimy;        // les dimensions de l'image
+        Pixel* tab;     /// le tableau 1D de pixel
+        unsigned int dimx, dimy;        /// les dimensions de l'image
 
     public :
 
-        // Constructeur par défaut de la classe: initialise dimx et dimy à 0
-        // ce constructeur n'alloue pas de pixel
+        /** Constructeur par défaut de la classe: initialise dimx et dimy à 0
+         ce constructeur n'alloue pas de pixel*/
         Image();
 
         // Constructeur de la classe: initialise dimx et dimy (après vérification)
@@ -37,7 +37,7 @@ class Image{
 
         // Efface l'image en la remplissant de la couleur en paramètre
         // (en appelant dessinerRectangle avec le bon rectangle)
-        void effacer (const Pixel& couleur);
+        void effacer (const Pixel couleur);
 
         // Effectue une série de tests vérifiant que le module fonctionne et
         // que les données membres de l'objet sont conformes

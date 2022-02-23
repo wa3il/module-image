@@ -8,28 +8,22 @@ using namespace std;
 #include "Pixel.h"
 
 //constructeur d'une image de dimension x et y
-Image :: Image() : dimx(0),dimy(0){}
-Image :: Image(unsigned int x,unsigned int y){
-   assert((x>=0) && (y>=0));
-   dimx = x;
-   dimy = y;
-   const unsigned int t_img = dimx * dimy;
+Image :: Image() : dimx(0),dimy(0){ tab = nullptr;}
+Image::Image(unsigned int x, unsigned int y) : dimx(x), dimy(y) {  ///Défintion du constructeur de la classe
 
-   tab = new Pixel[t_img]; //allocation dynamique d'un tableau de dimension h * l
+    assert(x >= 0);
+    assert(y >= 0);
+    tab= new Pixel[dimx * dimy];
 
-   //for(unsigned int i=0; i<t_img ; i++ ){
-      //cout<<tab[i].getRouge()<<","<<tab[i].getVert()<<","<<tab[i].getBleu();
-   //}
-}
+    }
 
-Image :: ~Image(){
-   if((dimx!= 0)||(dimy != 0)){
-      dimx = 0;
-      dimy = 0;
-      delete[] tab;
-      tab = NULL;
-   }
-}
+Image::~Image() {  /// définition du destructeur
+
+    dimx=0;
+    dimy=0;
+    delete [] tab;
+
+    }
 
 Pixel& Image :: getPix(const unsigned int x,const unsigned int y)const{
    assert(x<dimx);
@@ -61,7 +55,7 @@ void Image :: dessinerRectangle(const unsigned int Xmin,const unsigned int Ymin,
    }
 }
 
-void Image :: effacer(const Pixel& couleur){
+void Image :: effacer(const Pixel couleur){
    dessinerRectangle(0,0,dimx,dimy,couleur);
 }
 
@@ -115,14 +109,14 @@ void Image :: testRegression()const{
 } 
 
 
-void Image::sauver(const std::string & filename) const {
-    ofstream fichier(filename.c_str());
+void Image::sauver(const string & filename) const {
+    ofstream fichier (filename.c_str());
     assert(fichier.is_open());
     fichier << "P3" << endl;
     fichier << dimx << " " << dimy << endl;
     fichier << "255" << endl;
-    for(unsigned int y=0; y<dimy; y++)
-        for(unsigned int x=0; x<dimx; x++) {
+    for(unsigned int y=0; y<dimy; ++y)
+        for(unsigned int x=0; x<dimx; ++x) {
             Pixel& pix = getPix(x,y);
             fichier << +pix.getRouge() << " " << +pix.getVert() << " " << +pix.getBleu() << " ";
         }
@@ -130,33 +124,38 @@ void Image::sauver(const std::string & filename) const {
     fichier.close();
 }
 
-void Image::ouvrir(const std::string & filename) {
-   ifstream fichier (filename.c_str());
-   assert(fichier.is_open());
-	unsigned int r,g,b;
-	string mot;
-	dimx = dimy = 0;
-	fichier >> mot >> dimx >> dimy >> mot;
-	assert(dimx > 0 && dimy > 0);
-	if (tab != NULL) delete [] tab;
-	tab = new Pixel [dimx*dimy];
-   for(unsigned int y=0; y<dimy; y++)
-     for(unsigned int x=0; x<dimx; x++) {
-         fichier >> r >> g >> b;
-         getPix(x,y).setRouge(r);
-         getPix(x,y).setVert(g);
-         getPix(x,y).setBleu(b);
-     }
+
+
+void Image::ouvrir(const string & filename) {
+    ifstream fichier (filename.c_str());
+    assert(fichier.is_open());
+    unsigned int r,g,b;
+    string mot;
+    dimx = dimy = 0;
+    fichier >> mot >> dimx >> dimy >> mot;
+    assert(dimx > 0 && dimy > 0);
+    if (tab != NULL) delete [] tab;
+    tab = new Pixel [dimx*dimy];
+    for(unsigned int y=0; y<dimy; ++y)
+        for(unsigned int x=0; x<dimx; ++x) {
+            fichier >> r >> g >> b;
+            getPix(x,y).setRouge(r);
+            getPix(x,y).setVert(g);
+            getPix(x,y).setBleu(b);
+        }
     fichier.close();
     cout << "Lecture de l'image " << filename << " ... OK\n";
 }
 
+
+
+
 void Image::afficherConsole(){
-    cout << dimx << " " << dimy << endl;
-    for(unsigned int y=0; y<dimy;y++) {
-        for(unsigned int x=0; x<dimx;x++) {
+    std::cout << dimx << " " << dimy << endl;
+    for(unsigned int y=0; y<dimy; y++) {
+        for(unsigned int x=0; x<dimx; x++) {
             Pixel& pix = getPix(x,y);
-            cout << "["<<+pix.getRouge() << " " << +pix.getVert() << " " << +pix.getBleu() << "]";
+            cout << +pix.getRouge() << " " << +pix.getVert() << " " << +pix.getBleu() << " ";
         }
         cout << endl;
     }

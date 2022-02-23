@@ -1,10 +1,5 @@
-#include <cassert>
-#include <iostream>
-
 #include "Image.h"
-#include "Pixel.h"
 
- 
 int main() {
    Image * monImage = new Image(3,2);
    Image * test = new Image();

@@ -7,6 +7,10 @@ using namespace std;
 #include "Image.h"
 #include "Pixel.h"
 
+float temps (){
+    return float(SDL_GetTicks())/ CLOCKS_PER_SEC;///conversion des ms en secondes en divisant par 1000
+}
+
 //constructeur d'une image de dimension x et y
 Image :: Image() : dimx(0),dimy(0){ tab = nullptr;}
 Image::Image(unsigned int x, unsigned int y) : dimx(x), dimy(y) {  ///Défintion du constructeur de la classe
@@ -70,16 +74,16 @@ void Image :: testRegression()const{
    assert((pix.getRouge() == 20)&&(pix.getVert() == 50) && (pix.getBleu() == 76));
 
    //test mutateur set pixel
-   pix.setRouge(120);
+   pix.setRouge(10);
    pix.setVert(150);
    pix.setBleu(176);
 
-   assert((pix.getRouge() == 120)&&(pix.getVert() == 150) && (pix.getBleu() == 176));
+   assert((pix.getRouge() == 10)&&(pix.getVert() == 150) && (pix.getBleu() == 176));
 
    //test getPix et setPix
    im.setPix(2,2,pix);
 
-   assert(im.getPix(2,2).getRouge() == 120);
+   assert(im.getPix(2,2).getRouge() == 10);
    assert(im.getPix(2,2).getVert() == 150);
    assert(im.getPix(2,2).getBleu() == 176);
 
@@ -88,7 +92,7 @@ void Image :: testRegression()const{
    
    for(unsigned int i = 0;i < 3;i++){
       for(unsigned int j = 0;j < 3;j++){
-         assert(im.getPix(i,j).getRouge() == 120 );
+         assert(im.getPix(i,j).getRouge() == 10 );
          assert(im.getPix(i,j).getVert() == 150 );
          assert(im.getPix(i,j).getBleu() == 176 );
    }
@@ -148,8 +152,6 @@ void Image::ouvrir(const string & filename) {
 }
 
 
-
-
 void Image::afficherConsole(){
     std::cout << dimx << " " << dimy << endl;
     for(unsigned int y=0; y<dimy; y++) {
@@ -161,3 +163,100 @@ void Image::afficherConsole(){
     }
 }
 
+void Image::afficherInit(){
+    if (SDL_Init(SDL_INIT_VIDEO) < 0){
+        cout<<"erreur lors de l'initialisation de la SDL:"<<SDL_GetError()<<endl;
+        SDL_Quit();
+        exit(1);
+    }
+    if (TTF_Init() != 0){
+        cout<<"erreur lors de l'initialisation de la SDL:"<<SDL_GetError()<<endl;
+        SDL_Quit();
+        exit(1);
+         }
+    
+    int imgFlags = IMG_INIT_JPG | IMG_INIT_PNG;
+    if (!(IMG_Init(imgFlags)& imgFlags)){
+        cout<<"erreur lors de l'initialisation de la SDL:"<<SDL_GetError()<<endl;
+        SDL_Quit();
+        exit(1); 
+    }
+
+    /**creation de la fenetre*/
+    window = SDL_CreateWindow( "Module image",
+        SDL_WINDOWPOS_CENTERED, //x coin haut/gauche
+        SDL_WINDOWPOS_CENTERED,
+        200,200,
+        SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    if (window == NULL){
+        cout << "erreur lors de la creation de la fenetre:"<<SDL_GetError()<<endl;
+        SDL_Quit();
+        exit(1);
+    }
+    
+
+    sauver("./data/ImageSDL.ppm");
+    surface = IMG_Load("./data/ImageSDL.ppm");
+
+    renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
+    texture = SDL_CreateTextureFromSurface(renderer,surface);
+
+    SDL_SetRenderDrawColor(renderer,255,255,255,255);
+    SDL_RenderClear(renderer);
+
+    SDL_Rect r;
+    r.x = 0;
+    r.y = 0;
+    r.h = 200;
+    r.w = 200;
+
+    SDL_RenderCopy(renderer,texture,NULL,&r);
+    SDL_RenderPresent(renderer);
+
+}
+
+
+
+void Image::afficherBoucle(){
+    SDL_Event events;
+    SDL_Rect r;
+    bool quit = false;
+
+    ///Uint32 t = SDL_GetTicks(),nt;
+
+    while (!quit){
+            SDL_WaitEvent(&events);
+            if (events.type == SDL_QUIT) {quit = true;}
+            switch (events.key.keysym.scancode){
+                case SDL_SCANCODE_ESCAPE:                        
+                    quit = true;
+                    break;
+                case SDL_SCANCODE_G :
+                    SDL_RenderClear(renderer);
+                        r.x -= 10;
+                        r.y -= 10;
+                        r.h += 20;
+                        r.w += 20;
+                    SDL_RenderCopy(renderer,texture,NULL,&r);
+                    break;
+                        default : break;
+                    
+                }
+            
+        SDL_RenderPresent(renderer);
+    }
+
+}
+    
+
+void Image :: afficherDetruit(){
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+}
+
+void Image::afficher(){
+    afficherInit();
+    afficherBoucle();
+    afficherDetruit();
+}

@@ -5,11 +5,28 @@
 #include <fstream>
 #include <string>
 
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_image.h>
+
 class Image{
 
     private :
         Pixel* tab;     /// le tableau 1D de pixel
         unsigned int dimx, dimy;        /// les dimensions de l'image
+
+        SDL_Surface * surface; 
+        SDL_Texture * texture;
+        SDL_Window * window;
+        SDL_Renderer * renderer;
+        bool has_changed;
+
+        /** fonction intermédiaire privé à la classe pour initialisé une image SDL */
+        void afficherInit();
+        /** fonction intermédiaire permettant de faire tourner l'image en boucle et gestion des touches*/
+        void afficherBoucle();
+        /** fonction intermediaire permettant de detruire la fenetre */
+        void afficherDetruit();
 
     public :
 
@@ -53,6 +70,8 @@ class Image{
         //afficher sur la console une image
         void afficherConsole();
 
+        //Affiche l'image dans une fenêtre SDL2
+        void afficher();
 };
 
 #endif

@@ -50,5 +50,8 @@ all: ./bin/test ./bin/exemple ./bin/affichage
 	$(CC) $(FLAGS) -c ./src/Pixel.cpp -o ./obj/Pixel.o
 
 
+doc:
+	doxygen -g doc/image.doxy
+	
 clean:
-	rm *.o
+	rm ./obj/*.o ./bin/*

@@ -233,13 +233,21 @@ void Image::afficherBoucle(){
                     break;
                 case SDL_SCANCODE_G :
                     SDL_RenderClear(renderer);
+                        r.x += 10;
+                        r.y += 10;
+                        r.h -= 20;
+                        r.w -= 20;
+                    SDL_RenderCopy(renderer,texture,NULL,&r);
+                    break;
+                case SDL_SCANCODE_T :
+                    SDL_RenderClear(renderer);
                         r.x -= 10;
                         r.y -= 10;
                         r.h += 20;
                         r.w += 20;
                     SDL_RenderCopy(renderer,texture,NULL,&r);
                     break;
-                        default : break;
+                default : break;
                     
                 }
             
